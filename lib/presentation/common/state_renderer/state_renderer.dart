@@ -12,7 +12,7 @@ enum StateRendererType {
   // POPUP STATES (DIALOG)
   popupLoadingState,
   popupErrorState,
-  popupSuccessState,
+  popupSuccess,
 
 // FULL SCREEN STATED (FULL SCREEN)
   fullScreenLoadingState,
@@ -44,12 +44,12 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        return _getPopUpDialog(context ,[
+        return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.loading),
         ]);
         break;
       case StateRendererType.popupErrorState:
-        return _getPopUpDialog(context ,[
+        return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
           _getRetryButton(AppStrings.retryAgain, context),
@@ -72,14 +72,16 @@ class StateRenderer extends StatelessWidget {
         ]);
 
       case StateRendererType.contentState:
-       return Container() ;
-      case StateRendererType.popupSuccessState:
-        return _getPopUpDialog(context ,[
+        return Container();
+      case StateRendererType.popupSuccess:
+        return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.success),
           _getMessage(title),
           _getMessage(message),
           _getRetryButton(AppStrings.ok, context),
         ]);
+      default:
+        return Container();
     }
   }
 
@@ -91,7 +93,7 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
-  Widget _getAnimatedImage( String animationName) {
+  Widget _getAnimatedImage(String animationName) {
     return SizedBox(
       height: AppSize.s100,
       width: AppSize.s100,
@@ -104,7 +106,8 @@ class StateRenderer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.p8),
         child: Text(
-          message,textAlign: TextAlign.center,
+          message,
+          textAlign: TextAlign.center,
           style: getRegularTextStyle(
               color: ColorManager.black, fontSize: FontSize.s18),
         ),
@@ -120,7 +123,8 @@ class StateRenderer extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
               onPressed: () {
-                if (stateRendererType == StateRendererType.fullScreenErrorState) {
+                if (stateRendererType ==
+                    StateRendererType.fullScreenErrorState) {
                   // call retry function
                   retryActionFunction.call();
                 } else {
@@ -132,7 +136,7 @@ class StateRenderer extends StatelessWidget {
     ));
   }
 
-  Widget _getPopUpDialog(BuildContext context , List<Widget> children) {
+  Widget _getPopUpDialog(BuildContext context, List<Widget> children) {
     return Dialog(
       elevation: AppSize.s1_5,
       shape: RoundedRectangleBorder(
@@ -144,17 +148,17 @@ class StateRenderer extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppSize.s14),
             shape: BoxShape.rectangle,
             boxShadow: [BoxShadow(color: ColorManager.grey)]),
-        child: _getDialogContent(context ,children),
+        child: _getDialogContent(context, children),
       ),
     );
   }
 
-  Widget _getDialogContent(BuildContext context , List<Widget> children) {
+  Widget _getDialogContent(BuildContext context, List<Widget> children) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: children ,
+      children: children,
     );
   }
 }

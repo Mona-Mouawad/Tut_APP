@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatefulWidget {
@@ -13,4 +12,11 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Container();
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 }
+

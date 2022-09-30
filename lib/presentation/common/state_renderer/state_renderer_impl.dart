@@ -59,7 +59,7 @@ class SuccessState extends FlowState {
 
   @override
   StateRendererType getStateRendererType() {
-    return StateRendererType.popupSuccessState;
+    return StateRendererType.popupSuccess;
   }
 }
 
@@ -116,7 +116,7 @@ extension FlowStateExtension on FlowState {
         {
           DismissDialog(context);
           // show popup error
-          showPopup(context, getStateRendererType(), getMessage(),title: AppStrings.success );
+          showPopup(context, StateRendererType.popupSuccess, getMessage(),title: AppStrings.success );
           // show content ui of the screen
           return contentScreenWidget;
         }

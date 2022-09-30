@@ -39,20 +39,18 @@ Future initAppModule() async {
       () => RemoteDataSourceImp(instance()));
 }
 
- initLoginModule() {
-  if(!GetIt.I.isRegistered<LoginUseCase>())
-    {
-      instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
-      instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
-    }
+initLoginModule() {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
+    instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
 }
 
-initForgotPasswordModule ()
-{
-  if(!GetIt.I.isRegistered<ForgetPasswordUseCase>())
-    {
-      instance.registerFactory<ForgetPasswordUseCase>(() => ForgetPasswordUseCase(instance()));
-      instance.registerFactory<ForgetPasswordViewModel>(() => ForgetPasswordViewModel(instance()));
-
-    }
+initForgotPasswordModule() {
+  if (!GetIt.I.isRegistered<ForgetPasswordUseCase>()) {
+    instance.registerFactory<ForgetPasswordUseCase>(
+        () => ForgetPasswordUseCase(instance()));
+    instance.registerFactory<ForgetPasswordViewModel>(
+        () => ForgetPasswordViewModel(instance()));
+  }
 }

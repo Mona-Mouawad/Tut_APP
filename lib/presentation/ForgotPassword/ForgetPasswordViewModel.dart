@@ -19,7 +19,6 @@ class ForgetPasswordViewModel extends BaseViewModel
 
   @override
   void start() {
-    // TODO: implement start
     inputState.add(ContentState());
   }
 
@@ -40,11 +39,7 @@ class ForgetPasswordViewModel extends BaseViewModel
   @override
   // TODO: implement emailOutput
   Stream<bool> get emailOutput =>
-      _emailStreamController.stream.map((email) => _isEmailValid(email));
-
-  bool _isEmailValid(String email) {
-    return isEmailValid(email);
-  }
+      _emailStreamController.stream.map((email) => isEmailValid(email));
 
   @override
   // TODO: implement outputIsAllInputValid
@@ -53,7 +48,7 @@ class ForgetPasswordViewModel extends BaseViewModel
           .map((isAllInputValid) => _isAllInputValid());
 
   bool _isAllInputValid() {
-    return _isEmailValid(email);
+    return isEmailValid(email);
   }
 
   @override
@@ -62,8 +57,10 @@ class ForgetPasswordViewModel extends BaseViewModel
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.popupLoadingState));
     (await _forgetPasswordUseCase.execute(email)).fold(
-        (failure) => inputState.add(
-            ErrorState(StateRendererType.popupErrorState, failure.message)),
+        (failure) {
+          inputState.add(
+              ErrorState(StateRendererType.popupErrorState, failure.message));
+        } ,
         (supportMessage) {
       inputState.add(SuccessState(supportMessage));
     });

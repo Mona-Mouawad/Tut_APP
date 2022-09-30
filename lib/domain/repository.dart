@@ -7,5 +7,8 @@ import 'package:tut_app/domain/models.dart';
 abstract class Repository
 {
   Future <Either<Failure,Authentication>> login(LoginRequest loginRequest);
+  Future <Either<Failure,Authentication>> reqister(ReqisterRequest reqisterRequest);
   Future <Either<Failure,String>> forgotPassword(String email);
+
+
 }

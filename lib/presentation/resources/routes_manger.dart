@@ -39,6 +39,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const MainView());
 
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
 
       case Routes.storeDetailsRoute:

@@ -57,10 +57,10 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, Authentication>> reqister(ReqisterRequest reqisterRequest) async {
+  Future<Either<Failure, Authentication>> register(RegisterRequest registerRequest) async {
     if (await _netwokInfo.isConnected) {
       try {
-        final response = await _remoteDataSource.reqister(reqisterRequest);
+        final response = await _remoteDataSource.register(registerRequest);
         if (response.status == ApiInternalStatus.SUCCESS) {
           // success
           // return either right

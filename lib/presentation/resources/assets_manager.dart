@@ -11,6 +11,7 @@ class ImageAssets {
   static const String solidCircleIc = "$_imagePath/solid_circle_ic.svg";
   static const String leftArrowIc = "$_imagePath/left_arrow_ic.svg";
   static const String rightArrowIc = "$_imagePath/right_arrow_ic.svg";
+  static const String photoCameraIc = "$_imagePath/photo-camera.svg";
 }
 
 class JsonAssets {

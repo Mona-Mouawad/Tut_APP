@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tut_app/app/app_prefs.dart';
@@ -11,8 +13,10 @@ import 'package:tut_app/data/repository/repository_impl.dart';
 import 'package:tut_app/domain/repository.dart';
 import 'package:tut_app/domain/usecase/forgetPassword_usecase.dart';
 import 'package:tut_app/domain/usecase/login_usecase.dart';
+import 'package:tut_app/domain/usecase/register_usecase.dart';
 import 'package:tut_app/presentation/ForgotPassword/ForgetPasswordViewModel.dart';
 import 'package:tut_app/presentation/Login/login_viewmodel.dart';
+import 'package:tut_app/presentation/Register/RegisterViewModel.dart';
 
 final instance = GetIt.instance;
 
@@ -37,6 +41,9 @@ Future initAppModule() async {
   // remote data source
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImp(instance()));
+  //ImagePicker
+  instance.registerLazySingleton<ImagePicker>(
+      () => ImagePicker());
 }
 
 initLoginModule() {
@@ -52,5 +59,15 @@ initForgotPasswordModule() {
         () => ForgetPasswordUseCase(instance()));
     instance.registerFactory<ForgetPasswordViewModel>(
         () => ForgetPasswordViewModel(instance()));
+  }
+}
+
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCaseInput>()) {
+    instance.registerFactory<RegisterUseCase>(
+            () => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(
+            () => RegisterViewModel(instance()));
   }
 }

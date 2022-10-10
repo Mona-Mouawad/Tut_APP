@@ -6,7 +6,7 @@ class LoginRequest {
 }
 
 
-class ReqisterRequest {
+class RegisterRequest {
   String user_name;
   String country_mobile_code;
   String email;
@@ -14,6 +14,6 @@ class ReqisterRequest {
   String mobile_number;
   String profile_picture;
 
-  ReqisterRequest(this.user_name, this.country_mobile_code, this.email,
+  RegisterRequest(this.user_name, this.country_mobile_code, this.email,
       this.password, this.mobile_number, this.profile_picture);
 }

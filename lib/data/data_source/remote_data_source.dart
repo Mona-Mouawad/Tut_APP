@@ -5,7 +5,7 @@ import 'package:tut_app/data/response/responses.dart';
 abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
 
-  Future<AuthenticationResponse> reqister(ReqisterRequest reqisterRequest);
+  Future<AuthenticationResponse> register(RegisterRequest registerRequest);
 
   Future<ForgetPasswordResponse> forgetPassword(String email);
 }
@@ -26,14 +26,16 @@ class RemoteDataSourceImp implements RemoteDataSource {
   }
 
   @override
-  Future<AuthenticationResponse> reqister(
-      ReqisterRequest reqisterRequest) async {
+  Future<AuthenticationResponse> register(
+      RegisterRequest registerRequest) async {
     return await _appServiceClint.reqister(
-        reqisterRequest.user_name,
-        reqisterRequest.password,
-        reqisterRequest.email,
-        reqisterRequest.country_mobile_code,
-        reqisterRequest.mobile_number,
-        reqisterRequest.profile_picture);
+        registerRequest.user_name,
+        registerRequest.password,
+        registerRequest.email,
+        registerRequest.country_mobile_code,
+        registerRequest.mobile_number,
+        ""
+        //    registerRequest.profile_picture
+        );
   }
 }

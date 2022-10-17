@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tut_app/app/app_prefs.dart';
 import 'package:tut_app/app/constants.dart';
 import 'package:tut_app/presentation/Register/RegisterViewModel.dart';
 import 'package:tut_app/presentation/common/state_renderer/state_renderer_impl.dart';
@@ -31,6 +33,7 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _mobileNumberController = TextEditingController();
   final _form = GlobalKey<FormState>();
   final ImagePicker _imagePicker = instance<ImagePicker>();
+  final AppPreferences _preferences =instance<AppPreferences>();
 
   _bind() {
     _userNameController.addListener(() {
@@ -45,6 +48,12 @@ class _RegisterViewState extends State<RegisterView> {
     _mobileNumberController.addListener(() {
       _viewModel.setMobileNumber(_mobileNumberController.text);
     });
+    _viewModel.isRegisterScussesStreamController.stream.listen((isRegister) {
+      if (isRegister)
+        SchedulerBinding.instance?.addPostFrameCallback((_) {
+          _preferences.setUserLoggedIn();
+          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        }); });
   }
 
   @override

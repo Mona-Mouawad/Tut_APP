@@ -1,3 +1,4 @@
+import 'package:tut_app/data/data_source/local_data_source.dart';
 import 'package:tut_app/data/data_source/remote_data_source.dart';
 import 'package:tut_app/data/mapper/mapper.dart';
 import 'package:tut_app/data/network/error_handler.dart';
@@ -12,8 +13,10 @@ class RepositoryImpl implements Repository {
   final NetwokInfo _netwokInfo;
 
   final RemoteDataSource _remoteDataSource;
+  final LocalDataSource _localDataSource;
 
-  RepositoryImpl(this._remoteDataSource, this._netwokInfo);
+  RepositoryImpl(this._remoteDataSource, this._netwokInfo,
+      this._localDataSource);
 
   @override
   Future<Either<Failure, Authentication>> login(
@@ -30,7 +33,9 @@ class RepositoryImpl implements Repository {
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
-        return Left(ErrorHandeler.handle(error).failure);
+        return Left(ErrorHandeler
+            .handle(error)
+            .failure);
       }
     } else {
       return Left(DataSourceError.NO_INTERNET_CONNECTION.getFailure());
@@ -49,7 +54,9 @@ class RepositoryImpl implements Repository {
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
-        return Left(ErrorHandeler.handle(error).failure);
+        return Left(ErrorHandeler
+            .handle(error)
+            .failure);
       }
     } else {
       return Left(DataSourceError.NO_INTERNET_CONNECTION.getFailure());
@@ -57,7 +64,8 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, Authentication>> register(RegisterRequest registerRequest) async {
+  Future<Either<Failure, Authentication>> register(
+      RegisterRequest registerRequest) async {
     if (await _netwokInfo.isConnected) {
       try {
         final response = await _remoteDataSource.register(registerRequest);
@@ -70,10 +78,45 @@ class RepositoryImpl implements Repository {
               response.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
-        return Left(ErrorHandeler.handle(error).failure);
+        return Left(ErrorHandeler
+            .handle(error)
+            .failure);
       }
     } else {
       return Left(DataSourceError.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Home>> gethomedata() async {
+    try {
+      // get response from cache
+      final response = await  _localDataSource.getHomeData();
+      return Right(response.toDomain());
+    } catch (cacheError) {
+      if (await _netwokInfo.isConnected) {
+        try {
+          final response = await _remoteDataSource.getHomeData();
+          if (response.status == ApiInternalStatus.SUCCESS) {
+            // success
+            // return either right
+            // save home response to cache
+
+            // save response in cache (local data source)
+            _localDataSource.saveHomeToCache(response);
+            return Right(response.toDomain());
+          } else {
+            return Left(Failure(ApiInternalStatus.FAILURE,
+                response.message ?? ResponseMessage.DEFAULT));
+          }
+        } catch (error) {
+          return Left(ErrorHandeler
+              .handle(error)
+              .failure);
+        }
+      } else {
+        return Left(DataSourceError.NO_INTERNET_CONNECTION.getFailure());
+      }
     }
   }
 }

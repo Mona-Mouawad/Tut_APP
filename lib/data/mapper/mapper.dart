@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:tut_app/app/constants.dart';
 import 'package:tut_app/data/response/responses.dart';
 import 'package:tut_app/domain/models.dart';
@@ -30,5 +31,66 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
 extension ForgotPasswordResponseMapper on ForgetPasswordResponse? {
   String toDomain() {
     return this?.support.orEmpty() ?? Constants.empty;
+  }
+}
+
+extension ServiceResponseMapper on ServiceResponse? {
+  Service toDomain() {
+    return Service(
+      this?.id.orZero() ?? Constants.zero,
+      this?.title.orEmpty() ?? Constants.empty,
+      this?.image.orEmpty() ?? Constants.empty,
+    );
+  }
+}
+
+extension StoreResponseMapper on StoreResponse? {
+  Store toDomain() {
+    return Store(
+      this?.id.orZero() ?? Constants.zero,
+      this?.title.orEmpty() ?? Constants.empty,
+      this?.image.orEmpty() ?? Constants.empty,
+    );
+  }
+}
+
+extension BannerResponseMapper on BannersResponse? {
+  Banners toDomain() {
+    return Banners(
+      this?.id?.orZero() ?? Constants.zero,
+      this?.title.orEmpty() ?? Constants.empty,
+      this?.image.orEmpty() ?? Constants.empty,
+      this?.link.orEmpty() ?? Constants.empty,
+    );
+  }
+}
+
+extension HomeResponseMapper on HomeResponse? {
+  Home toDomain() {
+    List<Service> service = (this
+                ?.data
+                ?.services
+                ?.map((serviceResponse) => serviceResponse.toDomain()) ??
+            const Iterable.empty())
+        .cast<Service>()
+        .toList();
+
+    List<Banners> banners = (this
+        ?.data
+        ?.banners
+        ?.map((bannersResponse) => bannersResponse.toDomain()) ??
+        const Iterable.empty())
+        .cast<Banners>()
+        .toList();
+    List<Store> stores = (this
+        ?.data
+        ?.stores
+        ?.map((storesResponse) => storesResponse.toDomain()) ??
+        const Iterable.empty())
+        .cast<Store>()
+        .toList();
+
+    var data = HomeData(service, banners, stores);
+    return Home(data) ;
   }
 }

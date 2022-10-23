@@ -22,4 +22,12 @@ abstract class AppServiceClint {
       @Field("user_name") String userName, @Field("password") String password,
       @Field("email") String email, @Field("country_mobile_code") String countryMobileCode,
       @Field("mobile_number") String mobileNumber, @Field("profile_picture") String profilePicture);
+
+  @GET("/home")
+  Future<HomeResponse> gethome();
+
+
 }
+
+
+////flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs

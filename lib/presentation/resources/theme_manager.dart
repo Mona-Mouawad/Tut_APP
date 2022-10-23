@@ -54,17 +54,23 @@ ThemeData getTheme() {
 
     // text theme
     textTheme: TextTheme(
-      displayLarge: getSemiBoldTextStyle(
-          color: ColorManager.darkGrey, fontSize: FontSize.s16),
-      headlineLarge: getSemiBoldTextStyle(
-          color: ColorManager.darkGrey, fontSize: FontSize.s16),
-      titleMedium: getMediumTextStyle(
-          color: ColorManager.primary, fontSize: FontSize.s16),
-      headlineMedium: getRegularTextStyle(
-          color: ColorManager.darkGrey, fontSize: FontSize.s14),
-      bodyLarge: getRegularTextStyle(color: ColorManager.grey1),
-      bodySmall: getRegularTextStyle(color: ColorManager.grey),
+        displayLarge: getSemiBoldTextStyle(
+            color: ColorManager.darkGrey, fontSize: FontSize.s16),
+        headlineLarge: getSemiBoldTextStyle(
+            color: ColorManager.darkGrey, fontSize: FontSize.s16),
+        titleMedium: getMediumTextStyle(
+            color: ColorManager.primary, fontSize: FontSize.s16),
+        titleSmall: getRegularTextStyle(
+            color: ColorManager.white, fontSize: FontSize.s16),
+        headlineMedium: getRegularTextStyle(
+            color: ColorManager.darkGrey, fontSize: FontSize.s14),
+        bodyLarge: getRegularTextStyle(color: ColorManager.grey1),
+        bodySmall: getRegularTextStyle(color: ColorManager.grey),
+        labelSmall: getBoldTextStyle(
+            color: ColorManager.primary, fontSize: FontSize.s12),
+      labelMedium: getRegularTextStyle(color: ColorManager.grey2, fontSize: FontSize.s12),
     ),
+
 
 // input decoration theme (text form field)
     inputDecorationTheme: InputDecorationTheme(
@@ -96,7 +102,7 @@ ThemeData getTheme() {
     ),
 
     bottomSheetTheme: BottomSheetThemeData(
-       // elevation: AppSize.s1_5,
-    backgroundColor: ColorManager.white.withOpacity(0)),
+        // elevation: AppSize.s1_5,
+        backgroundColor: ColorManager.white.withOpacity(0)),
   );
 }

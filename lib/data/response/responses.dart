@@ -22,7 +22,7 @@ class CustomerResponse {
   @JsonKey(name: "numOfNotification")
   int? numOfNotification;
 
-  CustomerResponse(this.id,this.name, this.numOfNotification);
+  CustomerResponse(this.id, this.name, this.numOfNotification);
 
   //FromJson
   factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
@@ -43,7 +43,7 @@ class ContactsResponse {
   @JsonKey(name: "link")
   String? link;
 
-  ContactsResponse(this.email,this.phone, this.link);
+  ContactsResponse(this.email, this.phone, this.link);
 
   //FromJson
   factory ContactsResponse.fromJson(Map<String, dynamic> json) =>
@@ -71,8 +71,7 @@ class AuthenticationResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }
 
-
- // forget password
+// forget password
 @JsonSerializable()
 class ForgetPasswordResponse extends BaseResponse {
   @JsonKey(name: "support")
@@ -99,7 +98,7 @@ class ServiceResponse extends BaseResponse {
   @JsonKey(name: 'image')
   String? image;
 
-  ServiceResponse(this.id,this.title,this.image);
+  ServiceResponse(this.id, this.title, this.image);
 
   //FromJson
   factory ServiceResponse.fromJson(Map<String, dynamic> json) =>
@@ -123,7 +122,7 @@ class BannersResponse extends BaseResponse {
   @JsonKey(name: 'link')
   String? link;
 
-  BannersResponse(this.id,this.title,this.image,this.link);
+  BannersResponse(this.id, this.title, this.image, this.link);
 
   //FromJson
   factory BannersResponse.fromJson(Map<String, dynamic> json) =>
@@ -144,7 +143,7 @@ class StoreResponse extends BaseResponse {
   @JsonKey(name: 'image')
   String? image;
 
-  StoreResponse(this.id,this.title,this.image);
+  StoreResponse(this.id, this.title, this.image);
 
   //FromJson
   factory StoreResponse.fromJson(Map<String, dynamic> json) =>
@@ -165,7 +164,7 @@ class HomeDataResponse extends BaseResponse {
   @JsonKey(name: 'stores')
   List<StoreResponse>? stores;
 
-  HomeDataResponse(this.services,this.banners,this.stores);
+  HomeDataResponse(this.services, this.banners, this.stores);
 
   //FromJson
   factory HomeDataResponse.fromJson(Map<String, dynamic> json) =>
@@ -175,11 +174,10 @@ class HomeDataResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$HomeDataResponseToJson(this);
 }
 
-
 @JsonSerializable()
 class HomeResponse extends BaseResponse {
   @JsonKey(name: 'data')
-  HomeDataResponse ? data;
+  HomeDataResponse? data;
 
   HomeResponse(this.data);
 
@@ -191,6 +189,34 @@ class HomeResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$HomeResponseToJson(this);
 }
 
+@JsonSerializable()
+class StoreDetailsResponse extends BaseResponse {
+  @JsonKey(name: 'status')
+  int? status;
+  @JsonKey(name: 'id')
+  int? id;
+  @JsonKey(name: 'title')
+  String? title;
+  @JsonKey(name: 'message')
+  String? message;
+  @JsonKey(name: 'image')
+  String? image;
+  @JsonKey(name: 'details')
+  String? details;
+  @JsonKey(name: 'services')
+  String? services;
+  @JsonKey(name: 'about')
+  String? about;
 
+  StoreDetailsResponse(this.status, this.message, this.image, this.id,
+      this.title, this.details, this.services, this.about);
+
+  //FromJson
+  factory StoreDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      _$StoreDetailsResponseFromJson(json);
+
+//toJson
+  Map<String, dynamic> toJson() => _$StoreDetailsResponseToJson(this);
+}
 
 ////flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs

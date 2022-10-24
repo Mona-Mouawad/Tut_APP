@@ -44,6 +44,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterView());
 
       case Routes.storeDetailsRoute:
+        initStoreDetailsModule();
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
 
      case Routes.onBoardingRoute:

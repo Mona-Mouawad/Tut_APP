@@ -26,6 +26,8 @@ abstract class AppServiceClint {
   @GET("/home")
   Future<HomeResponse> gethome();
 
+  @GET("/storeDetails/1")
+  Future<StoreDetailsResponse> getStoreDetails();
 
 }
 

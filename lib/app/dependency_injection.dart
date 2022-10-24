@@ -11,15 +11,18 @@ import 'package:tut_app/data/network/app_api.dart';
 import 'package:tut_app/data/network/dio_factory.dart';
 import 'package:tut_app/data/network/network_info.dart';
 import 'package:tut_app/data/repository/repository_impl.dart';
+import 'package:tut_app/domain/models.dart';
 import 'package:tut_app/domain/repository.dart';
 import 'package:tut_app/domain/usecase/forgetPassword_usecase.dart';
 import 'package:tut_app/domain/usecase/home_usecase.dart';
 import 'package:tut_app/domain/usecase/login_usecase.dart';
 import 'package:tut_app/domain/usecase/register_usecase.dart';
+import 'package:tut_app/domain/usecase/storeDetails_usecase.dart';
 import 'package:tut_app/presentation/ForgotPassword/ForgetPasswordViewModel.dart';
 import 'package:tut_app/presentation/Login/login_viewmodel.dart';
 import 'package:tut_app/presentation/Main/Pages/home/home_page_ViewModel.dart';
 import 'package:tut_app/presentation/Register/RegisterViewModel.dart';
+import 'package:tut_app/presentation/StoreDetails/storeDetails_ViewModel.dart';
 
 final instance = GetIt.instance;
 
@@ -84,5 +87,14 @@ initHomeDataModule() {
             () => HomeUseCase(instance()));
     instance.registerFactory<HomeViewModel>(
             () => HomeViewModel(instance()));
+  }
+}
+
+initStoreDetailsModule() {
+  if (!GetIt.I.isRegistered<StoreDetailsUseCase>()) {
+    instance.registerFactory<StoreDetailsUseCase>(
+            () => StoreDetailsUseCase(instance()));
+    instance.registerFactory<StoreDetailsViewModel>(
+            () => StoreDetailsViewModel(instance()));
   }
 }

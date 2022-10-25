@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tut_app/presentation/Main/Pages/home/home_page.dart';
 import 'package:tut_app/presentation/Main/Pages/notifications_page.dart';
@@ -23,10 +24,10 @@ class _MainViewState extends State<MainView> {
     SettingsPage()
   ];
   List<String> _title = [
-    AppStrings.home,
-    AppStrings.search,
-    AppStrings.notification,
-    AppStrings.settings,
+    AppStrings.home.tr(),
+    AppStrings.search.tr(),
+    AppStrings.notification.tr(),
+    AppStrings.settings.tr(),
   ];
   int _currentIndex = 0;
 
@@ -41,10 +42,10 @@ class _MainViewState extends State<MainView> {
       Container(decoration: BoxDecoration(boxShadow: [BoxShadow(color: ColorManager.lightGrey,spreadRadius: AppSize.s1)]),
         child: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(icon:Icon( Icons.home) ,label: AppStrings.home),
-            BottomNavigationBarItem(icon:Icon( Icons.search) ,label: AppStrings.search),
-            BottomNavigationBarItem(icon:Icon( Icons.notifications) ,label: AppStrings.notification),
-            BottomNavigationBarItem(icon:Icon( Icons.settings) ,label: AppStrings.settings),
+            BottomNavigationBarItem(icon:Icon( Icons.home) ,label: AppStrings.home.tr()),
+            BottomNavigationBarItem(icon:Icon( Icons.search) ,label: AppStrings.search.tr()),
+            BottomNavigationBarItem(icon:Icon( Icons.notifications) ,label: AppStrings.notification.tr()),
+            BottomNavigationBarItem(icon:Icon( Icons.settings) ,label: AppStrings.settings.tr()),
 
           ],
           currentIndex: _currentIndex,

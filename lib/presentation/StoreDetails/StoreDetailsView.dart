@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tut_app/app/dependency_injection.dart';
@@ -32,7 +33,7 @@ class _StoreDetailsViewState extends State<StoreDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.storeDetails),
+        title: Text(AppStrings.storeDetails.tr()),
         elevation: AppSize.s0,
         iconTheme: IconThemeData(
           //back button
@@ -80,11 +81,11 @@ class _StoreDetailsViewState extends State<StoreDetailsView> {
             width: double.infinity,
             height: AppSize.s250,
           )),
-          _getSection(AppStrings.details),
+          _getSection(AppStrings.details.tr()),
           _getInfoText(storeDetails.details),
-          _getSection(AppStrings.services),
+          _getSection(AppStrings.services.tr()),
           _getInfoText(storeDetails.services),
-          _getSection(AppStrings.about),
+          _getSection(AppStrings.about.tr()),
           _getInfoText(storeDetails.about)
         ],
       );

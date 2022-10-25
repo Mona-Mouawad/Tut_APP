@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tut_app/app/constants.dart';
@@ -20,7 +21,7 @@ class LoadingState extends FlowState {
 
   @override
   String getMessage() {
-    return AppStrings.loading;
+    return AppStrings.loading.tr();
   }
 
   @override
@@ -116,7 +117,7 @@ extension FlowStateExtension on FlowState {
         {
           DismissDialog(context);
           // show popup error
-          showPopup(context, StateRendererType.popupSuccess, getMessage(),title: AppStrings.success );
+          showPopup(context, StateRendererType.popupSuccess, getMessage(),title: AppStrings.success.tr() );
           // show content ui of the screen
           return contentScreenWidget;
         }

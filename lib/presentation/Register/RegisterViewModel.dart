@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tut_app/app/constants.dart';
 import 'package:tut_app/app/functions.dart';
 import 'package:tut_app/domain/usecase/register_usecase.dart';
@@ -152,7 +153,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   // TODO: implement outputErrorEmail
   Stream<String?> get outputErrorEmail => outputIsEmailValid
-      .map((isEmailValid) => isEmailValid ? null : AppStrings.userNameInvalid);
+      .map((isEmailValid) => isEmailValid ? null : AppStrings.userNameInvalid.tr());
 
   @override
   // TODO: implement outputIsEmailValid
@@ -168,7 +169,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   // TODO: implement outputErrorMobileNumber
   Stream<String?> get outputErrorMobileNumber => outputIsMobileNumberValid.map(
-      (mobileNumber) => mobileNumber ? null : AppStrings.mobileNumberInvalid);
+      (mobileNumber) => mobileNumber ? null : AppStrings.mobileNumberInvalid.tr());
 
   @override
   // TODO: implement outputIsPasswordValid
@@ -178,7 +179,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   // TODO: implement outputErrorPassword
   Stream<String?> get outputErrorPassword => outputIsPasswordValid
-      .map((Password) => Password ? null : AppStrings.passwordInvalid);
+      .map((Password) => Password ? null : AppStrings.passwordInvalid.tr());
 
   @override
   // TODO: implement outputIsUserNameValid
@@ -188,7 +189,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   // TODO: implement outputErrorUserName
   Stream<String?> get outputErrorUserName => outputIsUserNameValid
-      .map((isUserName) => isUserName ? null : AppStrings.userNameInvalid);
+      .map((isUserName) => isUserName ? null : AppStrings.userNameInvalid.tr());
 
   @override
   // TODO: implement outputIsProfilePictureValid

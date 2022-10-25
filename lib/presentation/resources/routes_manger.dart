@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tut_app/app/dependency_injection.dart';
 import 'package:tut_app/presentation/ForgotPassword/ForgotPasswordView.dart';
@@ -58,7 +59,7 @@ class RouteGenerator {
   static Route<dynamic> unDefinedRoute() {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
-              body: const Center(child: Text(AppStrings.noRouteFound)),
+              body:  Center(child: Text(AppStrings.noRouteFound.tr())),
             ));
   }
 }
